@@ -1,0 +1,21 @@
+[package]
+name = "rust_dispatch"
+version = "0.1.0"
+authors = ["Tsukasa Arima (@pyar6329)"]
+edition = "2021"
+
+[lib]
+doctest = false
+
+[dependencies]
+thiserror = "1.0"
+anyhow = "1.0"
+tokio = { version = "1.37", features = ["full"] }
+redis-test = { version = "0.4", features = ["aio"] }
+redis = { version = "0.25", features = ["aio", "tokio-comp"] }
+
+[lints.rust]
+async_fn_in_trait = "allow"
+
+[lints.clippy]
+extra_unused_lifetimes = "allow"
