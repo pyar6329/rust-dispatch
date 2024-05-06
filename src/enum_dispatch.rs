@@ -1,12 +1,10 @@
 use super::{set_default_ttl, CacheError};
 use anyhow::{Error, Result};
 use deadpool_redis::redis::{aio::MultiplexedConnection, Cmd};
-use strum::EnumIs;
 
 #[cfg(test)]
 use redis_test::MockRedisConnection;
 
-#[derive(EnumIs)]
 pub enum ConnectionType {
     Connection(MultiplexedConnection),
     #[cfg(test)]
