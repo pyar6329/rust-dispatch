@@ -12,8 +12,11 @@ thiserror = "1.0"
 anyhow = "1.0"
 strum = { version = "0.26", features = ["derive"] }
 tokio = { version = "1.37", features = ["full"] }
+# redis = { version = "0.25", features = ["aio", "tokio-comp"] }
+deadpool-redis = { version = "0.15.0", features = ["rt_tokio_1"] }
+
+[dev-dependencies]
 redis-test = { version = "0.4", features = ["aio"] }
-redis = { version = "0.25", features = ["aio", "tokio-comp"] }
 
 [lints.rust]
 async_fn_in_trait = "allow"

@@ -26,11 +26,11 @@ run: ## run: cargo run
 	@cargo run --quiet -j $(CPU_CORES)
 
 .PHONY:	test
-test_unit: ## run: only unit test
+test: ## run: only unit test
 	@cargo test --lib
 
 .PHONY: test_debug
-test_unit_debug: ## run: only unit test (print debug mode)
+test_debug: ## run: only unit test (print debug mode)
 	@cargo test --lib -- --nocapture
 
 .PHONY: format
