@@ -29,9 +29,14 @@ impl ConnectionRepository<MockRedisConnection> for MockCacheRepository {
     }
 }
 
-pub async fn get_value<C>(conn_repo: &impl ConnectionRepository<C>, key: &str) -> Result<u64, Error>
+// &impl is sugar syntax
+// pub async fn get_value<C>(conn_repo: &impl ConnectionRepository<C>, key: &str) -> Result<u64, Error>
+// where
+//     C: ConnectionLike,
+pub async fn get_value<C, R>(conn_repo: &R, key: &str) -> Result<u64, Error>
 where
     C: ConnectionLike,
+    R: ConnectionRepository<C>,
 {
     let mut conn = conn_repo.get_conn();
     let result: u64 = Cmd::get(key)
@@ -41,13 +46,18 @@ where
     Ok(result)
 }
 
-pub async fn set_value<C>(
-    conn_repo: &impl ConnectionRepository<C>,
-    key: &str,
-    value: &u64,
-) -> Result<(), Error>
+// &impl is sugar syntax
+// pub async fn set_value<C>(
+//     conn_repo: &impl ConnectionRepository<C>,
+//     key: &str,
+//     value: &u64,
+// ) -> Result<(), Error>
+// where
+//     C: ConnectionLike,
+pub async fn set_value<C, R>(conn_repo: &R, key: &str, value: &u64) -> Result<(), Error>
 where
     C: ConnectionLike,
+    R: ConnectionRepository<C>,
 {
     let mut conn = conn_repo.get_conn();
     let _: () = Cmd::set_options(&key, *value, set_default_ttl())
