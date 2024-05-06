@@ -10,6 +10,7 @@ doctest = false
 [dependencies]
 thiserror = "1.0"
 anyhow = "1.0"
+strum = { version = "0.26", features = ["derive"] }
 tokio = { version = "1.37", features = ["full"] }
 redis-test = { version = "0.4", features = ["aio"] }
 redis = { version = "0.25", features = ["aio", "tokio-comp"] }
