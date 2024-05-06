@@ -1,6 +1,6 @@
 use super::*;
 
-struct CacheConnection<C: ConnectionLike> {
+pub struct CacheConnection<C: ConnectionLike> {
     conn: C,
 }
 
